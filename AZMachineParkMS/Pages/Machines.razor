@@ -1,0 +1,56 @@
+@page "/Machines"
+
+<h3>Machines</h3>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Status</th>
+        <th>Data</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var machine in MachineList)
+    {
+        <tr>
+            <td>@machine.Id.ToString()</td>
+            <td>@machine.Name</td>
+            <td>@machine.StatusString</td>
+            <td>@machine.LatestData</td>
+            <td><button class="btn-primary">Send Command</button></td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+@code {
+
+    public List<Machine> MachineList = new List<Machine>
+    {
+        new Machine
+        {
+            Id = Guid.NewGuid(),
+            Name = " Machine 1",
+            Status = MachineStatus.Offline,
+            LatestData = "Machine1 Data"
+        },
+        new Machine
+        {
+            Id = Guid.NewGuid(),
+            Name = " Machine 2",
+            Status = MachineStatus.Online,
+            LatestData = "Machine2 Data"
+        },
+        new Machine
+        {
+            Id = Guid.NewGuid(),
+            Name = " Machine 3",
+            Status = MachineStatus.Online,
+            LatestData = "Machine3 Data"
+        }
+    };
+
+}
